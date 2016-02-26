@@ -15,7 +15,7 @@
           <h1>RSS Feeds</h1>
           <form class="form-inline">
             <div class="form-group"><input type="text" class="form-control" id="search-bar" placeholder="Enter RSS URL"></div>
-            <button type="submit" class="btn btn-default" id="search-button">Search</button>
+            <button type="button" class="btn btn-default" id="search-button">Search</button>
           </form>
         </div>
         <div class="col-md-4"></div>
@@ -28,7 +28,7 @@
   <script type="text/javascript" src="https://www.google.com/jsapi"></script>
   <!-- JS custom -->
   <script type="text/javascript" >
-    // form listener functions
+    // UI functions
     function handleSearchClick() {
       // TODO refactor to do less DOM lookups
       document.getElementById("search-button")
