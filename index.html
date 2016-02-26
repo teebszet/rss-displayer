@@ -5,8 +5,13 @@
     <script type="text/javascript" >
       google.load("feeds", "1");
 
+      var feeds = [
+        "http://fliplet.net/feed",
+        "http://demon.net/feed",
+        "http://feeds.bbci.co.uk/news/rss.xml"
+      ];
       function initialize() {
-        var feed = new google.feeds.Feed("http://fliplet.net/feed");
+        var feed = new google.feeds.Feed(feeds[2]);
         feed.load(function(result) {
           if (!result.error) {
             _.forEach(result.feed.entries, function(v) {
@@ -17,7 +22,7 @@
           }
         });
       }
-      google.setOnLoadCallback(initialize);  
+      google.setOnLoadCallback(initialize); 
     </script>
   </head>
   <body>
