@@ -31,13 +31,17 @@
   <script type="text/javascript" >
     google.load("feeds", "1");
 
-    // RSS functions
+    // HTML elements functions
     function appendEntryDiv(container, entry) {
       // TODO implement this to append entry to container
       // this sucks but i'm running out of time
       container.append('<div class="row" id="entry"><div class="col-md-2" id="pictures">picture</div><div class="col-md-10" id="texts">text</div></div>');
     }
+    function validateURL(url) {
+      // validate...
+    }
 
+    // RSS functions
     function displayRSS(url) {
       var feed = new google.feeds.Feed(url);
       var entries = [];
@@ -54,6 +58,8 @@
       });
       return entries;
     }
+    
+    function 
 
     // UI functions
 
@@ -62,6 +68,7 @@
       document.getElementById("search-button")
         .addEventListener("click", function(e){
           var sb = document.getElementById("search-bar");
+          // validateURL(sb.value) not implemented
           sb.setAttribute("disabled", true);
           console.log('clicked with input ' + sb.value);
           displayRSS(sb.value);
