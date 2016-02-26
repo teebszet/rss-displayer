@@ -25,43 +25,51 @@
 
   <!-- JS libraries -->
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.5.1/lodash.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-beta1/jquery.min.js"></script>
   <script type="text/javascript" src="https://www.google.com/jsapi"></script>
   <!-- JS custom -->
   <script type="text/javascript" >
-    // UI functions
-    function handleSearchClick() {
-      // TODO refactor to do less DOM lookups
-      document.getElementById("search-button")
-        .addEventListener("click", function(){
-          console.log('clicked');
-          document.getElementById("search-bar").setAttribute("disabled", true);
-        });
-    }
-
     google.load("feeds", "1");
 
     // RSS functions
-    var feeds = [
-      "http://fliplet.net/feed",
-      "http://demon.net/feed",
-      "http://feeds.bbci.co.uk/news/rss.xml"
-    ];
-    function initialize() {
-      var feed = new google.feeds.Feed(feeds[2]);
+    function appendEntryDiv(container, entry) {
+      // TODO implement this to append entry to container
+      // this sucks but i'm running out of time
+      container.append('<div class="row" id="entry"><div class="col-md-2" id="pictures">picture</div><div class="col-md-10" id="texts">text</div></div>');
+    }
+
+    function displayRSS(url) {
+      var feed = new google.feeds.Feed(url);
+      var entries = [];
       feed.load(function(result) {
+        var container = $("#container");
         if (!result.error) {
-          _.forEach(result.feed.entries, function(v) {
-            console.log(v.contentSnippet) 
-            console.log(v.title) 
-            console.log(v.link) 
+          _.forEach(result.feed.entries, function(entry) {
+            appendEntryDiv(container, entry);
+            console.log(entry.contentSnippet);
+            console.log(entry.title);
+            console.log(entry.link);
           })
         }
       });
+      return entries;
+    }
+
+    // UI functions
+
+    function handleSearchClick() {
+      // TODO refactor to do less DOM lookups
+      document.getElementById("search-button")
+        .addEventListener("click", function(e){
+          var sb = document.getElementById("search-bar");
+          sb.setAttribute("disabled", true);
+          console.log('clicked with input ' + sb.value);
+          displayRSS(sb.value);
+        });
     }
 
     document.addEventListener("DOMContentLoaded", function(event) { 
       handleSearchClick();
-      //google.setOnLoadCallback(initialize); 
     });
   </script>
 <html>
