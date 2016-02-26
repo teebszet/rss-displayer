@@ -39,7 +39,8 @@
     function appendEntryDiv(container, entry) {
       // TODO implement this to append entry to container
       // this sucks but i'm running out of time
-      container.append('<div class="row" id="entry"><div class="col-md-2" id="pictures">picture</div><div class="col-md-10" id="texts">text</div></div>');
+      var div = document.createElement('div');
+      container.append('<div class="row" id="entry"><div class="col-md-2" id="pictures"><img src="http://placehold.it/150x150"></img></div><div class="col-md-10" id="texts">text</div></div>');
     }
     function validateURL(url) {
       // validate...
