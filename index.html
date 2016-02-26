@@ -29,6 +29,10 @@
   <script type="text/javascript" src="https://www.google.com/jsapi"></script>
   <!-- JS custom -->
   <script type="text/javascript" >
+    //if (!useWebservice) {
+    //  google.load(); 
+    //}
+
     google.load("feeds", "1");
 
     // HTML elements functions
@@ -42,6 +46,12 @@
     }
 
     // RSS functions
+    function displayRSSWithWebService(url) {
+      // TODO implement this
+      // send AJAX request to googlefeeds.php
+      // and display on callback with json
+    }
+
     function displayRSS(url) {
       var feed = new google.feeds.Feed(url);
       var entries = [];
