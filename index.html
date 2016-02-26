@@ -1,5 +1,26 @@
 <html>
   <head>
-    <script type="text/javascript" src="rss.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.5.1/lodash.min.js"></script>
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script type="text/javascript" >
+      google.load("feeds", "1");
+
+      function initialize() {
+        var feed = new google.feeds.Feed("http://fliplet.net/feed");
+        feed.load(function(result) {
+          if (!result.error) {
+            _.forEach(result.feed.entries, function(v) {
+              console.log(v.contentSnippet) 
+              console.log(v.title) 
+              console.log(v.link) 
+            })
+          }
+        });
+      }
+      google.setOnLoadCallback(initialize);  
+    </script>
   </head>
+  <body>
+    <div id="feed"></div>
+  </body>
 <html>
